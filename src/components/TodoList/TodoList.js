@@ -18,14 +18,14 @@ const TodoList = () => {
         setModalIsOpen(true)
     }
     const {data:tasks,isLoading,refetch}=useQuery('tasks',()=>(
-        fetch('http://localhost:5000/tasks')
+        fetch('https://blooming-forest-72562.herokuapp.com/tasks')
            .then(res=>res.json())
     ))
     if(isLoading){
         return <CustomSpinner/>
     }
     const deleteTask=(id)=>{
-        fetch(`http://localhost:5000/task/${id}`,{
+        fetch(`https://blooming-forest-72562.herokuapp.com/task/${id}`,{
                method:"DELETE",
                headers:{
                    "content-type":"application/json"
