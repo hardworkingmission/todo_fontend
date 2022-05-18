@@ -7,6 +7,7 @@ import Todo from '../Todo/Todo';
 import CustomModal from '../CustomModal/CustomModal';
 import CustomSpinner from '../CustomSpinner/CustomSpinner'
 import { useQuery } from 'react-query';
+
 const TodoList = () => {
     const [modalIsOpen,setModalIsOpen]=useState(false)
     const closeModal=()=>{
@@ -37,7 +38,7 @@ const TodoList = () => {
            })
     }
     return (
-        <div>
+        <div className='w-5/6 mx-auto'>
             <ToastContainer/>
             <CustomModal closeModal={closeModal} modalIsOpen={modalIsOpen}>
                 <Todo closeModal={closeModal} toast={toast} refetch={refetch}/>

@@ -1,6 +1,12 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
+    const [user, loading, error] = useAuthState(auth);
+    console.log(user?.email)
     return (
         <div>
             <nav class="
@@ -38,15 +44,22 @@ const Header = () => {
             </svg>
             </button>
             <div class="collapse navbar-collapse flex-grow items-center" id="navbarSupportedContent">
-            <a class="text-xl text-black" href="#">TodoDesk</a>
+            <Link class="text-xl text-black" to={'/'}>TodoDesk</Link>
             {/* <!-- Left links --> */}
             <ul class="navbar-nav flex flex-col pl-0 list-style-none ml-auto">
                 <li class="nav-item px-2">
-                    <a class="nav-link active" aria-current="page" href="#">My List</a>
+                    <Link class="nav-link active" aria-current="page" to={'/todotask'}>Task List</Link>
                 </li>
-                <li class="nav-item px-2">
-                    <a class="nav-link active" aria-current="page" href="#">Login</a>
-                </li>
+                {
+                    user?.uid?
+                    <li class="nav-item px-2">
+                        <button className='bg-blue-600 text-white p-2 rounded-lg' onClick={()=>signOut(auth)}>SignOut</button>
+                    </li>
+                    :
+                    <li class="nav-item px-2">
+                        <Link class="nav-link active" aria-current="page" to={'/sociallogin'}>Login</Link>
+                    </li>
+                }
             </ul>
             {/* <!-- Left links --> */}
             </div>

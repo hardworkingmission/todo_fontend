@@ -1,10 +1,11 @@
 import './App.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import Header from './components/Header/Header';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Footer from './components/Footer/Footer';
+import SocialLogin from './components/SocialLogin/SocialLogin';
+import TodoList from './components/TodoList/TodoList';
+import RequireAuth from './components/RequireAuth/RequireAuth'
 
 function App() {
   return (
@@ -12,6 +13,14 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/todotask' element={
+          <RequireAuth>
+            <TodoList/>
+        </RequireAuth>
+        }/>
+        <Route path='/sociallogin' element={
+            <SocialLogin/>
+        }/>
 
       </Routes>
       <Footer/>
