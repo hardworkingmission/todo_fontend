@@ -5,6 +5,7 @@ import Home from './components/Home/Home';
 import Footer from './components/Footer/Footer';
 import SocialLogin from './components/SocialLogin/SocialLogin';
 import TodoList from './components/TodoList/TodoList';
+import MyTodo from './components/MyTodo/MyTodo'
 import RequireAuth from './components/RequireAuth/RequireAuth'
 
 function App() {
@@ -15,8 +16,8 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/todotask' element={
           <RequireAuth>
-            <TodoList/>
-        </RequireAuth>
+            <MyTodo/>
+          </RequireAuth>
         }/>
         <Route path='/sociallogin' element={
             <SocialLogin/>

@@ -1,11 +1,12 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
 
 const Header = () => {
     const [user, loading, error] = useAuthState(auth);
+    const navigate=useNavigate()
     console.log(user?.email)
     return (
         <div>
@@ -48,12 +49,14 @@ const Header = () => {
             {/* <!-- Left links --> */}
             <ul class="navbar-nav flex flex-col pl-0 list-style-none ml-auto">
                 <li class="nav-item px-2">
-                    <Link class="nav-link active" aria-current="page" to={'/todotask'}>Task List</Link>
+                    <Link class="nav-link active" aria-current="page" to={'/todotask'}>My List</Link>
                 </li>
                 {
                     user?.uid?
                     <li class="nav-item px-2">
-                        <button className='bg-blue-600 text-white p-2 rounded-lg' onClick={()=>signOut(auth)}>SignOut</button>
+                        <button className='bg-blue-600 text-white p-2 rounded-lg' onClick={()=>{
+                            signOut(auth)
+                            navigate('/')}}>SignOut</button>
                     </li>
                     :
                     <li class="nav-item px-2">

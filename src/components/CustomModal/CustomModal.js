@@ -32,7 +32,7 @@ const CustomModal = ({closeModal,modalIsOpen,children}) => {
         >
             <div className='h-[300px] lg:w-[400px] relvative'>
                 <FontAwesomeIcon role={'button'} onClick={()=>closeModal()} icon={faClose} className='absolute top-[2%] right-[2%] h-[20px] w-[20px] text-red-600'/>
-                <div className='mt-5'>
+                <div className='py-5'>
                 {children}
 
                 </div>
